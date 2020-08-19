@@ -1,0 +1,63 @@
+/*body{
+    padding-top: 68px;
+    padding-bottom: 50px;
+}
+        .image-container {
+            position: relative;
+        }
+
+        .image {
+            opacity: 1;
+            display: block;
+            width: 100%;
+            height: auto;
+            transition: .5s ease;
+            backface-visibility: hidden;
+        }
+
+        .middle {
+            transition: .5s ease;
+            opacity: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .image-container:hover .image {
+            opacity: 0.3;
+        }
+
+        .image-container:hover .middle {
+            opacity: 1;
+        }*/
+        #blue-div{
+            width: 70%;
+         
+            position:centre;
+            margin: auto;
+            padding:50px;
+            background-color: rgb(226, 234, 236);
+            margin-top: 50px;
+            border-radius: 35px;
+            
+        }
+        
+        #div-1{
+            display: flex;
+            flex-direction: row;
+            flex-flow: row wrap; 
+            margin-left: auto;
+             margin-right: auto;
+             }
+             #yourInfo{
+                 margin-top: 20px;
+             }
+             #updateButton{
+                position: absolute;
+                margin-left: 57%;
+                
+
+             }

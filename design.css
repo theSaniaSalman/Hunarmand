@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+
+/* SIGN UP PAGE */
+body{
+  margin:0;
+  padding:0;
+  overflow-x:hidden;
+}
+a{
+  text-decoration:none;
+}
+.create-account{
+	padding:5% 0%;
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;	
+}
+.child-div{	
+width:45%;
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+	box-shadow:0px 0px 15px gray;
+	border-radius:10px;
+border:4px solid #d300ff;
+}
+.create-account-heading{
+	width:100%;
+	background-color: #d300ff;
+	text-align:center;
+	padding:1% 0%;	
+	font-family:'Montserrat' , sans-serif;
+	color:#ffff;
+}
+.form-div{
+    padding:2% 2%;
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+	
+}
+.form-div form label{
+	font-size:22px;
+	font-weight:700;
+	font-family: 'Lato', sans-serif;
+	padding-top:3%;
+}
+.form-div form input, .form-div form textarea{
+		width:90%;
+		font-size:25px;
+		padding:1% 1%;
+		border-radius:5px;
+		border:1px solid #000;
+}
+.form-div form textarea{
+	padding:1% 1%;
+}
+input:focus, textarea:focus{
+	outline: none;
+	border:none;     /* Remove default outline and use border or box-shadow */
+  box-shadow: 0 0 0 4px #d300ff; /*
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+	font-weight:300;
+  opacity: 1; /* Firefox */
+}
+.dropdown-label{
+padding-right:20px;
+}
+
+select{
+	width:40%;
+	text-align:center;
+	padding:5px 0px;
+}
+#user-type-label{
+	padding-right:100px;
+}
+.error-msg{
+	background-color:orange;
+	text-align:center;
+	padding:2% 0%;
+	width:90%;
+}
+.account-msg{
+	background-color:#98FB98;
+	text-align:center;
+	padding:2% 0%;
+	width:90%;
+}
+/* Second Button */
+.submit-button{
+	display:flex;
+	justify-content:center;
+	margin-top:8%;
+    margin-bottom:3%;
+}
+#signup-button-2 {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+	background-color: transparent;
+	padding:15px 5em;
+	border:2px solid #000;
+	 border-radius:5px;
+	
+}
+
+#signup-button-2 a {
+  position: relative;
+  transition: all .35s ease-Out;
+  font-size:22px;
+  color:#000;
+	font-weight:700;
+}
+
+#slide {
+  width: 100%;
+  height: 100%;
+  left: -100%;
+  background-color:#d300ff;
+  position: absolute;
+  transition: all .35s ease-Out;
+  bottom: 0;
+}
+
+#signup-button-2:hover #slide {
+  left: 0;
+}
+
+#signup-button-2:hover a {
+  color: #fff;
+  text-decoration:none;
+}
