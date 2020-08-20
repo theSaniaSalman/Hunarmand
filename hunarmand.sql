@@ -2,10 +2,10 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Aug 12, 2020 at 09:06 PM
+-- Host: 127.0.0.1
+-- Generation Time: Aug 20, 2020 at 03:53 PM
 -- Server version: 10.4.13-MariaDB
--- PHP Version: 7.2.32
+-- PHP Version: 7.4.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `hunarmand`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `buyerreq`
+--
+
+CREATE TABLE `buyerreq` (
+  `buyername` varchar(25) DEFAULT NULL,
+  `dateofwork` date DEFAULT NULL,
+  `loc_` text DEFAULT NULL,
+  `category` char(25) DEFAULT NULL,
+  `descript` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `buyerreq`
+--
+
+INSERT INTO `buyerreq` (`buyername`, `dateofwork`, `loc_`, `category`, `descript`) VALUES
+(NULL, '2020-08-03', 'North Nazimabad', 'Electrician', 'i need wires');
 
 -- --------------------------------------------------------
 
@@ -56,6 +77,12 @@ INSERT INTO `workerregistration` (`workerID`, `fullName`, `phoneNum`, `email`, `
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `buyerreq`
+--
+ALTER TABLE `buyerreq`
+  ADD UNIQUE KEY `buyername` (`buyername`);
 
 --
 -- Indexes for table `workerregistration`
