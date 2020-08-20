@@ -1,0 +1,47 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial;
+  }
+  
+  /* Style tab links */
+  .tablink {
+    background-color: rgb(201, 224, 233);
+    color:rgb(92, 88, 88);
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 7px 7px;
+    font-size: 15px;
+    width: auto;
+   margin-right: 7px;
+   margin-left:7px;
+   margin-top:14px;
+   border-radius: 2%;
+  }
+  
+  .tablink:hover {
+    background-color:rgb(152, 213, 233);
+  }
+  
+  /* Style the tab content (and add height:100% for full page content) */
+  .tabcontent {
+    color:black;
+    display: none;
+    padding: 100px 20px;
+    height: 100%;
+  }
+  #container-div
+  {
+      height:auto;
+      width:90%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 20px;;
+  }
+  
+  /*#Home {background-color: red;}
+  #News {background-color: green;}
+  #Contact {background-color: blue;}
+  #About {background-color: orange;}*/
