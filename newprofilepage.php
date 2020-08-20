@@ -9,32 +9,11 @@ if($_SESSION["user_login"]==null)
   $result = $conn->query($sql);
   if($result->num_rows == 1){
 	  $row = $result->fetch_assoc();
-  $fullname = $row['fullName'];
-  $USERTYPE = $row['userType'];
-  $PHONENUMBER = $row['phoneNum'];
-  $EMAIL = $row['email'];
-  $PASSWORD = $row['password'];
-  $ADDRESS = $row['addresss'];
-  $CNIC =  $row['CNIC'];
+	  $fullname = $row['fullName'];
   }
   if(isset($_POST['updatebutton'])){
-	  if(($_POST['fullname'] == "" || $_POST['pnumber'] == "" || $_POST['email'] == "" || $_POST['address'] == "" || $_POST['password'] == "")){
-		   echo"<script>alert('Empty fields are not allowed');</script>";
-	  }
-	  else{
-		  $fullname = $_POST['fullname'];
-		  $PHONENUMBER = $_POST['pnumber'];
-		  $EMAIL = $_POST['email'];
-		  $ADDRESS = $_POST['address'];
-		  $PASSWORD = $_POST['password'];
-		  	  	  
-		  $sql = "UPDATE workerregistration SET fullName = '$fullname', phoneNum = '$PHONENUMBER', email = '$EMAIL', addresss = '$ADDRESS', password = '$PASSWORD' WHERE userName='".$_SESSION['user_login']."'";
-		  if($conn->query($sql) == TRUE){
-			  echo"<script>alert('Successfully Updated');</script>";
-		  }
-		  else{
-			  echo"<script>alert('Failed to update');</script>";
-		  }
+	  if(($_POST['fullname']) == ""){
+		  echo "All fields are required";
 	  }
   }
 
@@ -116,11 +95,11 @@ if($_SESSION["user_login"]==null)
      <img src="http://placehold.it/150x150" id="imgProfile" style="width: 150px; height: 150px" class="img-thumbnail" />
             <!--<div></div>
     <input type="button" class="btn btn-secondary" id="btnChangePicture" value="Change" />-->
-
+         <input type="file" style="display: none;" id="profilePicture" name="file" />
           </div>
                                 
           <div style="margin-left:20px;"> <!--class="userData ml-3" style="display:inline-block;">-->
-           <h1 style="color:#2E77BB; font-size:2.5em; font-weight:bold;"><?php echo $_SESSION['row']['userName'];?></h1>
+             <h2 style="font-size: 1.5rem; font-weight: bold; color: rgb(252, 62, 252);"><a href="javascript:void(0);">Some Name</a></h2>
              <h6> <!--class="d-block">-->Rating :<span></span> 8/10</h6>
              <h6> <!--class="d-block">-->Jobs completed :<span>15</span></h6>
              <h6> <!--<class="d-block">-->Member since <span>2019</span></h6>
@@ -129,7 +108,7 @@ if($_SESSION["user_login"]==null)
        </div>     
        <form action="profilepage.php" method="POST">             
      
-            <input type="file" id="profilePicture" name="profilepic" accept="image/*" />
+    <input type="button" class="btn btn-secondary" id="btnChangePicture" value="Change" />
        <div id = "yourInfo"> 
                                        
                                           <div class="row">
@@ -151,68 +130,4 @@ if($_SESSION["user_login"]==null)
                                             </div>
                                         </div>
                                         <hr />
-										 <div class="row">
-                                            <div class="col-sm-3 col-md-2 col-5">
-                                                <label style="font-weight:bold;">User Type:</label>
-                                            </div>
-                                            <div class="col-md-8 col-6">
-                                                <input type="text"  name="usertype" value="<?php echo $USERTYPE?>" style="border:none" readonly>
-                                            </div>
-                                        </div>
-                                        <hr />
-									
-										  <div class="row">
-                                            <div class="col-sm-3 col-md-2 col-5">
-                                                <label style="font-weight:bold;">Phone number:</label>
-                                            </div>
-                                            <div class="col-md-8 col-6">
-                                                <input type="text"  name="pnumber" value="<?php echo $PHONENUMBER?>" style="border:none">
-                                            </div>
-                                        </div>
-                                        <hr />
-                                        
-                                        <div class="row">
-                                            <div class="col-sm-3 col-md-2 col-5">
-                                                <label style="font-weight:bold;">Email:</label>
-                                            </div>
-                                            <div class="col-md-8 col-6">
-                                                <input type="email"  name="email" value="<?php echo $EMAIL ?>" style="border:none">
-                                            </div>
-                                        </div>
-                                        <hr />
-                                        
-                                        
-                                        <div class="row">
-                                            <div class="col-sm-3 col-md-2 col-5">
-                                                <label style="font-weight:bold;">Address</label>
-                                            </div>
-                                            <div class="col-md-8 col-6">
-                                                <input type="text" name="address" value="<?php echo $ADDRESS ?>" style="border:none">
-                                            </div>
-                                        </div>
-                                        <hr />
-
-                                        <div class="row">
-                                            <div class="col-sm-3 col-md-2 col-5">
-                                                <label style="font-weight:bold;">Password:</label>
-                                            </div>
-                                            <div class="col-md-8 col-6">
-                                                <input type="password"  name="password" value="<?php echo $PASSWORD ?>" style="border:none">
-                                            </div>
-                                        </div>
-                                        <hr />
-
-                                        <div class="row">
-                                            <div class="col-sm-3 col-md-2 col-5">
-                                                <label style="font-weight:bold;">CNIC:</label>
-                                            </div>
-                                            <div class="col-md-8 col-6">
-                                                <input type="tel" pattern="^\d{5}-\d{7}-\d{1}$" name="cnic" value="<?php echo $CNIC ?>" style="border:none" readonly>
-                                            </div>
-                                        </div>
-                                        <hr />
-
-                                        <a href="javascript:void(0);"><button type="submit" class="btn btn-secondary" name ="updatebutton" id="updateButton" style="position:left;">UPDATE</button></a>
-										</form>
-										</body>
-										</html>
+                                        <button type="submit" class="btn btn-secondary" name ="updatebutton" id="updateButton" style="position:left;">UPDATE</button>

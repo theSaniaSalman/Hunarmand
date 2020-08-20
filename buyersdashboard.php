@@ -1,6 +1,4 @@
-
-
-  <?php
+ <?php
   include("dbConnection.php"); 
   session_start();
   if($_SESSION["user_login"]==null)

@@ -20,7 +20,8 @@ if(isset($_POST['username'])){
         if($_SESSION["row"][6]=="Buyer")
        { 
 
-           header("Location:buyersdashboard.php");}
+           header("Location:buyersdashboard.php");
+		   }
        else{
            header("Location:workersdashboard.php");
        }

@@ -6,16 +6,43 @@ if($_SESSION["user_login"]==null)
       header("Location:signin.php");
   }
   $sql = "SELECT * from workerregistration where userName='".$_SESSION['user_login']."'";
+  $result = $conn->query($sql);
+  if($result->num_rows == 1){
+  $row = $result->fetch_assoc();
+  $fullname = $row['fullName'];
+  $USERTYPE = $row['userType'];
+  $PHONENUMBER = $row['phoneNum'];
+  $EMAIL = $row['email'];
+  $PASSWORD = $row['password'];
+  $ADDRESS = $row['addresss'];
+  $CNIC =  $row['CNIC'];
+  $WORKCATEGORY = $row['workCategory'];
+	  
+  }
+  if(isset($_POST['updatebutton'])){
+	  if(($_POST['fullname'] == "" || $_POST['pnumber'] == "" || $_POST['email'] == "" || $_POST['address'] == "" || $_POST['password'] == "")){
+		   echo"<script>alert('Empty fields are not allowed');</script>";
+	  }
+	  else{
+		  $fullname = $_POST['fullname'];
+		  $PHONENUMBER = $_POST['pnumber'];
+		  $EMAIL = $_POST['email'];
+		  $ADDRESS = $_POST['address'];
+		  $PASSWORD = $_POST['password'];
+		  $WORKCATEGORY = $_POST['workcategory'];
+		  	  	  
+		  $sql = "UPDATE workerregistration SET fullName = '$fullname', phoneNum = '$PHONENUMBER', email = '$EMAIL', addresss = '$ADDRESS', password = '$PASSWORD', workCategory = '$WORKCATEGORY' WHERE userName='".$_SESSION['user_login']."'";
+		  if($conn->query($sql) == TRUE){
+			  
+			  echo"<script>alert('Successfully Updated yahoo!');</script>";
+		  }
+		  else{
+			  echo"<script>alert('Failed to update');</script>";
+		  }
+	  }
+  }
 
-  $result = mysqli_query($conn,$sql);
-  $row=mysqli_fetch_array($result);
-  $FULLNAME=$_SESSION["row"]["fullName"];
-  $PHONENUMBER=$_SESSION["row"]["phoneNum"];
-  $EMAIL=$_SESSION["row"]["email"];
-  $ADDRESS=$_SESSION["row"]["addresss"];
-  $PASSWORD=$_SESSION["row"]["password"];
- 
-?>
+?>  
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,32 +82,30 @@ if($_SESSION["user_login"]==null)
             </button>
             </div>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+              <ul class="navbar-nav mr-auto">
                 
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                 <ul class="navbar-nav mr-auto">
-				<li class="nav-item">
-                        <a class="nav-link" href="#aboutus">Services</a>
-                    </li>
                     <li class="nav-item">
 					
-                        <a class="nav-link" href="#service-heading">Orders</a>
+                        <a class="nav-link" href="">Requests</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#howitworks">Requests</a>
+                        <a class="nav-link" href="">My Orders</a>
                     </li>
                     
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">Messages</a>
+                        <a class="nav-link" href="">Messages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">My Profile</a>
+                        <a class="nav-link" href="workersprofile.php">My Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="registration.php">Log Out</a>
+                        <a class="nav-link" href="logout.php">Logout</a>
                     </li>
+                    
                     </ul> 
                 </form>
             </div>
@@ -97,7 +122,7 @@ if($_SESSION["user_login"]==null)
           </div>
                                 
           <div style="margin-left:20px;"> <!--class="userData ml-3" style="display:inline-block;">-->
-             <h2 style="font-size: 1.5rem; font-weight: bold; color: rgb(252, 62, 252);"><a href="javascript:void(0);">Some Name</a></h2>
+           <h1 style="color:#2E77BB; font-size:2.5em; font-weight:bold;"><?php echo $_SESSION['row']['userName'];?></h1>
              <h6> <!--class="d-block">-->Rating :<span></span> 8/10</h6>
              <h6> <!--class="d-block">-->Jobs completed :<span>15</span></h6>
              <h6> <!--<class="d-block">-->Member since <span>2019</span></h6>
@@ -111,13 +136,14 @@ if($_SESSION["user_login"]==null)
                                        
                                           <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
-                                                <label style="font-weight:bold;">Full- Name:</label>
+                                                <label style="font-weight:bold;">Full Name:</label>
                                             </div>
                                             <div class="col-md-8 col-6">
-                                              <input type="text" id="name" name="fullname" value="<?php echo $FULLNAME ?>" style="border:none;">
+                                              <input type="text" id="name" name="fullname" value="<?php echo $fullname ?>" style="border:none;">
                                             </div>
                                         </div>
                                         <hr />
+										
 
                                         <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
@@ -128,13 +154,24 @@ if($_SESSION["user_login"]==null)
                                             </div>
                                         </div>
                                         <hr />
-
-                                        <div class="row">
+										 <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">User Type:</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                <input type="text"  name="usertype" value="<?php echo $USERTYPE ?>" style="border:none" readonly>
+                                            </div>
+                                        </div>
+                                        <hr />
+										
+										
+										 
+										  <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
                                                 <label style="font-weight:bold;">Phone number:</label>
                                             </div>
                                             <div class="col-md-8 col-6">
-                                                <input type="text"  name="pnumber" value="<?php echo $PHONENUMBER?>" style="border:none">
+                                                <input type="text"  name="pnumber" value="<?php echo $PHONENUMBER ?>" style="border:none">
                                             </div>
                                         </div>
                                         <hr />
@@ -149,13 +186,32 @@ if($_SESSION["user_login"]==null)
                                         </div>
                                         <hr />
                                         
-                                        
+										<div class="row">
+                                           <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Working Category:</label>
+                                    </div>
+                                          <div class="col-md-8 col-6">   
+											<select name="workcategory" style="width:180px;">
+  <option value="Electrician" <?php if($row["workCategory"]=='Electrician'){echo "selected";}?>>Electrician</option>
+  <option value="Plumber" <?php if($row["workCategory"]=='Plumber'){echo "selected";}?>>Plumber</option>
+  <option value="AC Technician" <?php if($row["workCategory"]=='AC Technician'){echo "selected";}?>>AC Technician</option>
+  <option value="Car Mechanic" <?php if($row["workCategory"]=='Car Mechanic'){echo "selected";}?>>Car Mechanic</option>
+  <option value="Carpenter" <?php if($row["workCategory"]=='Carpenter'){echo "selected";}?>>Carpenter</option>
+  <option value="Painter" <?php if($row["workCategory"]=='Painter'){echo "selected";}?>>Painter</option>
+  <option value="House Cleaning Service" <?php if($row["workCategory"]=='House Cleaning Services'){echo "selected";}?>>House Cleaning Service</option>
+  <option value="Education" <?php if($row["workCategory"]=='Education'){echo "selected";}?>>Education</option>
+</select>
+     </div>
+                                        </div>
+                                        <hr/>
+										
+                                     
                                         <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
                                                 <label style="font-weight:bold;">Address</label>
                                             </div>
                                             <div class="col-md-8 col-6">
-                                                <input type="text"  name="address" value="<?php echo $ADDRESS ?>" style="border:none">
+                                                <input type="text" name="address" value="<?php echo $ADDRESS ?>" style="border:none">
                                             </div>
                                         </div>
                                         <hr />
@@ -175,67 +231,13 @@ if($_SESSION["user_login"]==null)
                                                 <label style="font-weight:bold;">CNIC:</label>
                                             </div>
                                             <div class="col-md-8 col-6">
-                                                <input type="tel" pattern="^\d{5}-\d{7}-\d{1}$" name="cnic" value="<?php echo $_SESSION['row']['CNIC'] ?>" style="border:none" readonly>
+                                                <input type="tel" pattern="^\d{5}-\d{7}-\d{1}$" name="cnic" value="<?php echo $CNIC ?>" style="border:none" readonly>
                                             </div>
                                         </div>
                                         <hr />
 
-                                        
-                                        <input type="button"  action ="POST"class="btn btn-secondary" name ="Update" value="Update" id="updateButton" style="position:left;">
-                                        <?php
-
-include('dbconnection.php');
-if(isset($_POST['Submit']) && !empty($_POST['Submit']))
-{
-    $uName=$_POST['username'];
-    $updateQuery="UPDATE 'workerregistration' SET fullName='".$_POST['fullname']."', phoneNum='".$_POST['pnumber']."', email='".$_POST['email']."', password='".$_POST['password']."', addresss='".$_POST['address']."' WHERE userName='".$uName."'";
-    $updateQueryRun=mysqli_query($conn,$updateQuery);
-    if($updateQueryRun)
-    {
-        echo '<script type="text/javascript">alert("Data updated"); </script>';
-    }
-    else{
-        echo "error";
-    }
-
-}
-
-?>
-</body>
-</html>
-
-                                    
-                                    </form>  
-                                    </div>  
-  
-
-                             </div><!-- yourinfo div closing-->
-       
-        </div>
-
-
-
-<?php
-
-include('dbconnection.php');
-if(isset($_REQUEST['POST']))
-{
-    $uName=$_POST['username'];
-    $updateQuery="UPDATE 'workerregistration' SET fullName='".$_POST['fullname']."', phoneNum='".$_POST['pnumber']."', email='".$_POST['email']."', password='".$_POST['password']."', addresss='".$_POST['address']."' WHERE userName='".$uName."'";
-    $updateQueryRun=mysqli_query($conn,$updateQuery);
-    if($updateQueryRun)
-    {
-        echo '<script type="text/javascript">alert("Data updated"); </script>';
-    }
-
-}
-
-?>
-</body>
-</html>
-
-
-
-
-
-
+                                        <a href="javascript:void(0);"><button type="submit" class="btn btn-secondary" name ="updatebutton" id="updateButton" style="position:left;">UPDATE</button></a>
+										</form>
+										</body>
+										</html>
+										
