@@ -1,4 +1,4 @@
- <?php
+<?php
   include("dbConnection.php"); 
   session_start();
   if($_SESSION["user_login"]==null)
@@ -40,23 +40,17 @@
             </button>
             </div>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+               <ul class="navbar-nav mr-auto">
                 
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                 <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-				<li class="nav-item">
-                        <a class="nav-link" href="">Services</a>
-                    </li>
                     <li class="nav-item">
 					
                         <a class="nav-link" href="">Requests</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Orders</a>
+                        <a class="nav-link" href="">My Orders</a>
                     </li>
                     
                     
@@ -64,7 +58,7 @@
                         <a class="nav-link" href="">Messages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="profilepage.php">My Profile</a>
+                        <a class="nav-link" href="workersprofile.php">My Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="logout.php">Logout</a>
