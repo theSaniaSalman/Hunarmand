@@ -1,0 +1,13 @@
+#mainDiv{
+    margin: auto;
+    
+    padding: 40 px;
+    width:50%;
+}
+
+.child{
+background-color:rgb(160, 211, 229);
+     border-radius: 6px;
+     width: auto;
+     height: 100px;
+}
