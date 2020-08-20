@@ -1,4 +1,6 @@
- <?php
+
+
+  <?php
   include("dbConnection.php"); 
   session_start();
   if($_SESSION["user_login"]==null)
@@ -49,11 +51,11 @@
                         <a class="nav-link" href="index.html">Home</a>
                     </li>
 				<li class="nav-item">
-                        <a class="nav-link" href="">Services</a>
+                        <a class="nav-link" href="services.php">Services</a>
                     </li>
                     <li class="nav-item">
 					
-                        <a class="nav-link" href="">Requests</a>
+                        <a class="nav-link" href="requests.php">Requests</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="">Orders</a>

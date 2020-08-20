@@ -1,37 +1,29 @@
-<?php
-include('dbConnection.php');
-session_start();
-if($_SESSION["user_login"]==null)
-  {
-      header("Location:signin.php");
-  }
-   $sql = "SELECT * from workerregistration where userName='".$_SESSION['user_login']."'";
-  $result = mysqli_query($conn,$sql);
-  
-?>
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Site Title-->
-    <title>Sign Up | Hunarmand</title>
-    <meta name="format-detection" content="telephone=no">
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta charset="utf-8">
-    <link rel="icon" href="images/tools.png" type="image/x-icon" />
-    <link rel="shortcut icon" href="images/tools.png" type="image/x-icon" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page | Hunarmand</title>
+    
 
-<!-- Stylesheets -->  
-	<link rel="stylesheet" href="design.css" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+      <link rel="icon" href="images/tools.png" type="image/x-icon" />
+      <!--stylesheets-->
+    <link rel="shortcut icon" href="images/tools.png" type="image/x-icon" />
+    <link rel="stylesheet" href="design.css" type="text/css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href = "services.css" rel="stylesheet" type="text/css">
+    
 
+    <!-- -->
 </head>
-
-    <body>
-	<!-- Back To Top Button -->
+<body>
+     <!-- Back To Top Button -->
 <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-arrow-up" aria-hidden="true"></i>
 </button>
     <div id="header" class="sticky-top">
@@ -51,28 +43,140 @@ if($_SESSION["user_login"]==null)
                 <form class="form-inline my-2 my-lg-0">
                 <ul class="navbar-nav mr-auto">
 				<li class="nav-item">
-                        <a class="nav-link" href="#aboutus">Services</a>
+                        <a class="nav-link" href="services.php">Services</a>
                     </li>
                     <li class="nav-item">
 					
-                        <a class="nav-link" href="#service-heading">Orders</a>
+                        <a class="nav-link" href="">Orders</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#howitworks">Requests</a>
+                        <a class="nav-link" href="">Requests</a>
                     </li>
                     
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">Messages</a>
+                        <a class="nav-link" href="">Messages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">My Profile</a>
+                        <a class="nav-link" href="profilepage.php">My Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="registration.php">Log Out</a>
+                        <a class="nav-link" href="logout.php">Log Out</a>
                     </li>
                     </ul> 
                 </form>
             </div>
         </nav>
     </div>
+    
+      <div id="blue-div" >
+        <div id="div-1">
+         <?php
+         include('dbconnection.php');
+         mysqli_select_db($conn,$db_name);
+         $countQuery="SELECT * FROM workerregistration WHERE workCategory='".$_GET["work-category"]."'";
+         $executeCountQuery=mysqli_query($conn,$countQuery);
+         $num=mysqli_num_rows($executeCountQuery);
+         $USERNAME=array();
+         $i=0;
+        
+        
+         
+         
+             if($_GET['work-category']=='Electricia')
+             { 
+                echo '<h2 class="headings">All Electricians</h2>';
+                while($row=mysqli_fetch_array($executeCountQuery))
+                {   $FULLNAME=$row[1];
+                     
+                    echo '<div id="in-div"><a href="othersprofile.php?USERNAME= $USERNAME[]">'. $FULLNAME.' </a></div>';
+                    echo '<div></div>';
+
+                 }
+                }
+
+
+                 if($_GET['work-category']=='Plumber')
+             {
+                echo '<h2 class="headings">All Plumbers</h2>';
+                while($row=mysqli_fetch_array($executeCountQuery))
+                {   $FULLNAME=$row[1];
+                     
+                    echo '<div id="in-div"><a href="othersprofile.php?USERNAME= $USERNAME[]">'. $FULLNAME.' </a></div>';
+                    echo '<div></div>';
+
+                 }
+
+                 }
+             
+             if($_GET['work-category']=='AC Technician')
+             {
+                echo '<h2 class="headings">All AC Technicians</h2>';
+                while($row=mysqli_fetch_array($executeCountQuery))
+                {   $FULLNAME=$row[1];
+                     
+                    echo '<div id="in-div"><a href="othersprofile.php?USERNAME= $USERNAME[]">'. $FULLNAME.' </a></div>';
+                    echo '<div></div>';
+
+                 }
+             }
+             if($_GET['work-category']=='Car Mechanic')
+             {
+                echo '<h2 class="headings">All Car Mechanics</h2>';
+                while($row=mysqli_fetch_array($executeCountQuery))
+                {   $FULLNAME=$row[1];
+                     
+                    echo '<div id="in-div"><a href="othersprofile.php?USERNAME= $USERNAME[]">'. $FULLNAME.' </a></div>';
+                    echo '<div></div>';
+
+                 }
+             }
+             if($_GET['work-category']=='Carpenter')
+             {  echo '<h2 class="headings">All Carpenters</h2>';
+                $i=0;
+                while($row=mysqli_fetch_array($executeCountQuery))
+                {   $FULLNAME=$row[1];
+                    
+                    $USERNAME[$i]=$row[9];
+                    $i+1;
+                    ?> <div id="in-div"><a href="othersprofile.php?USERNAME=<?php echo $USERNAME[$i]?>"><?php echo $FULLNAME?></a></div>
+                    <div></div>
+                    <?php
+
+                 }
+             }
+             if($_GET['work-category']=='Painter')
+             {
+                echo '<h2 class="headings">All Painters</h2>';
+                while($row=mysqli_fetch_array($executeCountQuery))
+                {   $FULLNAME=$row[1];
+                     
+                    echo '<div id="in-div"><a href="othersprofile.php?USERNAME= $USERNAME[]">'. $FULLNAME.' </a></div>';
+                    echo '<div></div>';
+
+                 }
+             }
+             if($_GET['work-category']=='House Cleaning')
+             {
+                echo '<h2 class="headings">All House Cleaning</h2>';
+                while($row=mysqli_fetch_array($executeCountQuery))
+                {   $FULLNAME=$row[1];
+                     
+                    echo '<div id="in-div"><a href="othersprofile.php?USERNAME= $USERNAME[]">'. $FULLNAME.' </a></div>';
+                    echo '<div></div>';
+
+                 }
+             }
+             if($_GET['work-category']=='Education')
+             {
+                echo '<h2 class="headings">All Education</h2>';
+                while($row=mysqli_fetch_array($executeCountQuery))
+                {   $FULLNAME=$row[1];
+                     
+                    echo '<div id="in-div"><a href="othersprofile.php?USERNAME= $USERNAME[]">'. $FULLNAME.' </a></div>';
+                    echo '<div></div>';
+
+                 }
+             }
+            ?>
+</div>
