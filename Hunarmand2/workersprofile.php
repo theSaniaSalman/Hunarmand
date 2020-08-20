@@ -8,7 +8,7 @@ if($_SESSION["user_login"]==null)
   $sql = "SELECT * from workerregistration where userName='".$_SESSION['user_login']."'";
   $result = $conn->query($sql);
   if($result->num_rows == 1){
-	  $row = $result->fetch_assoc();
+  $row = $result->fetch_assoc();
   $fullname = $row['fullName'];
   $USERTYPE = $row['userType'];
   $PHONENUMBER = $row['phoneNum'];
@@ -16,6 +16,8 @@ if($_SESSION["user_login"]==null)
   $PASSWORD = $row['password'];
   $ADDRESS = $row['addresss'];
   $CNIC =  $row['CNIC'];
+  $WORKCATEGORY = $row['workCategory'];
+	  
   }
   if(isset($_POST['updatebutton'])){
 	  if(($_POST['fullname'] == "" || $_POST['pnumber'] == "" || $_POST['email'] == "" || $_POST['address'] == "" || $_POST['password'] == "")){
@@ -27,10 +29,12 @@ if($_SESSION["user_login"]==null)
 		  $EMAIL = $_POST['email'];
 		  $ADDRESS = $_POST['address'];
 		  $PASSWORD = $_POST['password'];
+		  $WORKCATEGORY = $_POST['workcategory'];
 		  	  	  
-		  $sql = "UPDATE workerregistration SET fullName = '$fullname', phoneNum = '$PHONENUMBER', email = '$EMAIL', addresss = '$ADDRESS', password = '$PASSWORD' WHERE userName='".$_SESSION['user_login']."'";
+		  $sql = "UPDATE workerregistration SET fullName = '$fullname', phoneNum = '$PHONENUMBER', email = '$EMAIL', addresss = '$ADDRESS', password = '$PASSWORD', workCategory = '$WORKCATEGORY' WHERE userName='".$_SESSION['user_login']."'";
 		  if($conn->query($sql) == TRUE){
-			  echo"<script>alert('Successfully Updated');</script>";
+			  
+			  echo"<script>alert('Successfully Updated yahoo!');</script>";
 		  }
 		  else{
 			  echo"<script>alert('Failed to update');</script>";
@@ -78,32 +82,30 @@ if($_SESSION["user_login"]==null)
             </button>
             </div>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+              <ul class="navbar-nav mr-auto">
                 
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                 <ul class="navbar-nav mr-auto">
-				<li class="nav-item">
-                        <a class="nav-link" href="#aboutus">Services</a>
-                    </li>
                     <li class="nav-item">
 					
-                        <a class="nav-link" href="#service-heading">Orders</a>
+                        <a class="nav-link" href="">Requests</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#howitworks">Requests</a>
+                        <a class="nav-link" href="">My Orders</a>
                     </li>
                     
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">Messages</a>
+                        <a class="nav-link" href="">Messages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">My Profile</a>
+                        <a class="nav-link" href="workersprofile.php">My Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="registration.php">Log Out</a>
+                        <a class="nav-link" href="logout.php">Logout</a>
                     </li>
+                    
                     </ul> 
                 </form>
             </div>
@@ -116,7 +118,7 @@ if($_SESSION["user_login"]==null)
      <img src="http://placehold.it/150x150" id="imgProfile" style="width: 150px; height: 150px" class="img-thumbnail" />
             <!--<div></div>
     <input type="button" class="btn btn-secondary" id="btnChangePicture" value="Change" />-->
-
+         <input type="file" style="display: none;" id="profilePicture" name="file" />
           </div>
                                 
           <div style="margin-left:20px;"> <!--class="userData ml-3" style="display:inline-block;">-->
@@ -129,7 +131,7 @@ if($_SESSION["user_login"]==null)
        </div>     
        <form action="profilepage.php" method="POST">             
      
-            <input type="file" id="profilePicture" name="profilepic" accept="image/*" />
+    <input type="button" class="btn btn-secondary" id="btnChangePicture" value="Change" />
        <div id = "yourInfo"> 
                                        
                                           <div class="row">
@@ -141,6 +143,7 @@ if($_SESSION["user_login"]==null)
                                             </div>
                                         </div>
                                         <hr />
+										
 
                                         <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
@@ -156,17 +159,19 @@ if($_SESSION["user_login"]==null)
                                                 <label style="font-weight:bold;">User Type:</label>
                                             </div>
                                             <div class="col-md-8 col-6">
-                                                <input type="text"  name="usertype" value="<?php echo $USERTYPE?>" style="border:none" readonly>
+                                                <input type="text"  name="usertype" value="<?php echo $USERTYPE ?>" style="border:none" readonly>
                                             </div>
                                         </div>
                                         <hr />
-									
+										
+										
+										 
 										  <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
                                                 <label style="font-weight:bold;">Phone number:</label>
                                             </div>
                                             <div class="col-md-8 col-6">
-                                                <input type="text"  name="pnumber" value="<?php echo $PHONENUMBER?>" style="border:none">
+                                                <input type="text"  name="pnumber" value="<?php echo $PHONENUMBER ?>" style="border:none">
                                             </div>
                                         </div>
                                         <hr />
@@ -181,7 +186,26 @@ if($_SESSION["user_login"]==null)
                                         </div>
                                         <hr />
                                         
-                                        
+										<div class="row">
+                                           <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Working Category:</label>
+                                    </div>
+                                          <div class="col-md-8 col-6">   
+											<select name="workcategory" style="width:180px;">
+  <option value="Electrician" <?php if($row["workCategory"]=='Electrician'){echo "selected";}?>>Electrician</option>
+  <option value="Plumber" <?php if($row["workCategory"]=='Plumber'){echo "selected";}?>>Plumber</option>
+  <option value="AC Technician" <?php if($row["workCategory"]=='AC Technician'){echo "selected";}?>>AC Technician</option>
+  <option value="Car Mechanic" <?php if($row["workCategory"]=='Car Mechanic'){echo "selected";}?>>Car Mechanic</option>
+  <option value="Carpenter" <?php if($row["workCategory"]=='Carpenter'){echo "selected";}?>>Carpenter</option>
+  <option value="Painter" <?php if($row["workCategory"]=='Painter'){echo "selected";}?>>Painter</option>
+  <option value="House Cleaning Service" <?php if($row["workCategory"]=='House Cleaning Services'){echo "selected";}?>>House Cleaning Service</option>
+  <option value="Education" <?php if($row["workCategory"]=='Education'){echo "selected";}?>>Education</option>
+</select>
+     </div>
+                                        </div>
+                                        <hr/>
+										
+                                     
                                         <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
                                                 <label style="font-weight:bold;">Address</label>
@@ -216,3 +240,4 @@ if($_SESSION["user_login"]==null)
 										</form>
 										</body>
 										</html>
+										
