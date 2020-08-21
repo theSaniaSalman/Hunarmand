@@ -33,14 +33,14 @@
     <body>
     <div id="header" class="sticky-top">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div>
-			<a href="index.html"><img src="images/hunarmand1.png" alt="Hunarmand Logo"></a>
+		
+	    <a href="index.html"><img src="images/hunarmand1.png" alt="Hunarmand Logo"></a>
             <a class="navbar-brand" href="#"><h1 style="font-weight: 800;"></h1></a>
             <!-- <img style="size:10px; background: transparent !important; height: 100px;" src="images/download (6).png" alt=""> -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            </div>
+         
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                 
