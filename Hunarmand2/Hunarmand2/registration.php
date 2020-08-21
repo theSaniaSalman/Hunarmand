@@ -69,43 +69,38 @@ $regmsg = '<div class="error-msg">Unable To Create Account</div>';
     <body>
 	  <div id="header" class="sticky-top">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div>
-			<a href="index.html"><img src="images/hunarmand1.png" alt="Hunarmand Logo"></a>
+            
+           
+            <a href="index.html"><img src="images/hunarmand1.png" alt="Hunarmand Logo"></a> 
             <a class="navbar-brand" href="#"><h1 style="font-weight: 800;"></h1></a>
-            <!-- <img style="size:10px; background: transparent !important; height: 100px;" src="images/download (6).png" alt=""> -->
+            
+            
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            </div>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                <ul class="navbar-nav mr-auto">
-				<li class="nav-item">
-                        <a class="nav-link" href="index.html#aboutus">About Us</a>
+
+            <div class="collapse navbar-collapse " id="navbarSupportedContent" >
+            <ul class="navbar-nav mr-auto  " ></ul>
+                <ul class="navbar-nav mr-auto  " >
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#service">Services<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-					
-                        <a class="nav-link" href="index.html#service-heading">Services</a>
+                        <a class="nav-link" href="index.php#howitworks">How it Works</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html#howitworks">How It Works</a>
+                        <a class="nav-link" href="index.php#aboutus">About Us</a>
                     </li>
-                    
-                    
                     <li class="nav-item">
                         <a class="nav-link" href="#contact">Contact Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="signin.php">Log In</a>
+                        <a class="nav-link" href="signin.php">LogIn</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Sign Up</a>
+                        <a class="nav-link" href="#">SignUp</a>
                     </li>
-                    </ul> 
-                </form>
+                </ul>
             </div>
         </nav>
     </div>
@@ -247,5 +242,9 @@ function yesnoCheck(that) {
     }
 }
 </script>
+	    
+	    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    
     </body>
 </html>
