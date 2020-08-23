@@ -1,0 +1,29 @@
+
+        #blue-div{
+            width: 70%;
+         
+            position:centre;
+            margin: auto;
+            padding:50px;
+            /*background-color: rgb(226, 234, 236);*/
+            margin-top: 50px;
+            border-radius: 35px;
+            
+        }
+        
+        #div-1{
+            display: flex;
+            flex-direction: row;
+            flex-flow: row wrap; 
+            margin-left: auto;
+             margin-right: auto;
+             }
+             #yourInfo{
+                 margin-top: 20px;
+             }
+             #submit{
+                position: absolute;
+                margin-left: 57%;
+                 }
+         
+       
